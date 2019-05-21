@@ -1,9 +1,8 @@
 // Dependencies
 const express = require("express");
-const bodyParser = require("body-parser"); //JSON responses
 const mongoose = require("mongoose"); //Mongo object modelling 
-const request = require("request"); //Makes http calls
-const axios = require("axios");
+// const request = require("request"); //Makes http calls
+const axios = require("axios"); //Makes https calls
 const cheerio = require("cheerio"); //Scraper
 
 // Require all models
@@ -16,7 +15,8 @@ const PORT = process.env.PORT || process.argv[2] || 8080;
 const app = express();
 
 // Use body-parser for handling form submissions
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Handlebars
 const exphbs = require("express-handlebars");
@@ -27,6 +27,7 @@ app.set("view engine", "handlebars");
 app.use(express.static("public"));
 // Controllers
 const router = require("./controllers/api.js");
+
 app.use(router);
 // Connect to the Mongo DB
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
@@ -34,7 +35,7 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlin
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Start the server
 app.listen(PORT, function () {

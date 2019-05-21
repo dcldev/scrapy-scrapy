@@ -1,0 +1,32 @@
+.background-image{
+    background-color: #BFEDCF;
+}
+
+body {
+   color: darkgrey;
+}
+
+.jumbotron {
+    margin-top: 2em;
+}
+
+@media (min-width: 1px) {
+    .display-1 {
+        font-size: 4rem
+    }
+}
+
+@media (min-width: 576px) {
+    .display-1{
+        font-size: 5rem
+    }
+    
+}
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+    .display-1 {
+        font-size: 6rem
+    }
+    
+}
