@@ -30,12 +30,12 @@ const router = require("./controllers/api.js");
 
 app.use(router);
 // Connect to the Mongo DB
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+const MONGODB_PINK_URI = process.env.MONGOLAB_PINK_URI || "mongodb://localhost/mongoHeadlines";
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_PINK_URI, { useNewUrlParser: true });
 
 // Start the server
 app.listen(PORT, function () {
